@@ -38,4 +38,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Default URL options for the Devise mailer.
+  config.action_mailer.default_url_options = {
+    host: Rails.application.secrets.action_mailer_default_url,
+    port: Rails.application.secrets.action_mailer_default_port
+  }
 end
