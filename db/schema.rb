@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706134122) do
+ActiveRecord::Schema.define(version: 20160708150404) do
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "points",          limit: 4
+    t.integer  "remaining_shots", limit: 4, default: 50
+    t.datetime "ended_at"
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "games", ["ended_at"], name: "index_games_on_ended", using: :btree
+  add_index "games", ["user_id"], name: "index_games_on_user_id", using: :btree
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "x",          limit: 4
+    t.integer  "y",          limit: 4
+    t.boolean  "water"
+    t.boolean  "shooted"
+    t.integer  "game_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "positions", ["game_id"], name: "index_positions_on_game_id", using: :btree
+  add_index "positions", ["shooted", "water"], name: "index_positions_on_shooted_and_water", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -31,4 +56,6 @@ ActiveRecord::Schema.define(version: 20160706134122) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "games", "users"
+  add_foreign_key "positions", "games"
 end
