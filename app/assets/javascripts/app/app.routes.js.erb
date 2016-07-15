@@ -1,0 +1,20 @@
+'use strict';
+
+angular.module('battleshipApp')
+
+  .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+      .when('/sign_in', {
+        templateUrl: '/assets/app/components/authentication/signInView.html'
+      })
+      .when('/sign_up', {
+        templateUrl: '/assets/app/components/authentication/signUpView.html'
+      })
+      .when('/edit_user', {
+        templateUrl: '/assets/app/components/authentication/editUserView.html'
+      })
+      .when('/', {
+        templateUrl: '/assets/app/components/home/homeView.html'
+      })
+      .otherwise({ redirectTo: '/sign_in' });
+  }])

@@ -1,0 +1,22 @@
+.header
+  %nav
+    %ul.nav.nav-pills.pull-right{'ng-controller' => 'SessionController as session'}
+      %li{:role => 'presentation'}
+        %a{:href => '#/'} Home
+      %li{'ng-hide' => 'isAuthenticated', :role => 'presentation'}
+        %a{:href => '#/sign_in'} Sign In
+      %li.dropdown{'ng-show' => 'isAuthenticated', :role => 'presentation'}
+        %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => ''}
+          Account
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => '#/edit_user'} Edit Profile
+          %li.divider
+          %li
+            %a{:href => '', 'ng-click' => 'session.logout()'} Logout
+
+  %h3.text-muted
+    %a{:href => '#/'} Battleship
+
+%div{'ng-view' => ''}

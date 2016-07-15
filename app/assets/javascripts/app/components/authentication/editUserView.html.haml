@@ -1,0 +1,28 @@
+.row
+  .col-md-4.col-md-offset-4
+    %h2.text-center Change Password
+
+    %form{:name => 'userForm', 'ng-controller' => 'EditUserController as user', 'ng-submit' => 'user.edit()', :role => 'form', :novalidate => ''}
+      .row{'ng-show' => 'user.error'}
+        .alert.alert-danger {{user.error}}
+
+      .row{'ng-show' => 'user.message'}
+        .alert.alert-info {{user.message}}
+
+      .form-group{'ng-class' => '{ "has-error": userForm.password.$dirty && userForm.password.$error.required }'}
+        %label{:for => 'password'} New password
+        %input#password.form-control{:name => 'password', 'ng-model' => 'user.credentials.password', :type => 'password', :required => ''}/
+        %span.help-block{'ng-show' => 'userForm.password.$dirty && userForm.password.$error.required'} Password is required
+
+      .form-group{'ng-class' => '{ "has-error": userForm.password_confirmation.$dirty && userForm.password_confirmation.$error.required }'}
+        %label{:for => 'password_confirmation'} Repeat password
+        %input#password_confirmation.form-control{:name => 'password_confirmation', 'ng-model' => 'user.credentials.password_confirmation', :type => 'password', :required => ''}/
+        %span.help-block{'ng-show' => 'userForm.password_confirmation.$dirty && userForm.password_confirmation.$error.required'} Password confirmation is required
+
+      .form-group{'ng-class' => '{ "has-error": userForm.current_password.$dirty && userForm.current_password.$error.required }'}
+        %label{:for => 'current-password'} Current password
+        %input#current-password.form-control{:name => 'current_password', 'ng-model' => 'user.credentials.current_password', :type => 'password', :required => ''}/
+        %span.help-block{'ng-show' => 'userForm.current_password.$dirty && userForm.current_password.$error.required'} Current password is required
+
+      .form-actions
+        %button.btn.btn-primary{'ng-disabled' => 'userForm.$invalid || user.dataLoading', :type => 'submit'} Change password

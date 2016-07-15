@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       set_flash_message(:notice, :signed_up)
       sign_up(:user, @user)
-      render json: { 'message': flash[:notice] }, status: 200
+      render json: @user, status: 201
     else
       set_flash_message(:alert, :invalid)
       render json: { 'error': flash[:alert] }, status: 401
@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @user.update(user_params)
         set_flash_message(:notice, :updated)
         sign_in(:user, @user)
-        render json: { 'message': flash[:notice] }, status: 200
+        render json: @user, status: 200
       else
         set_flash_message(:alert, :invalid)
         render json: { 'error': flash[:alert] }, status: 401

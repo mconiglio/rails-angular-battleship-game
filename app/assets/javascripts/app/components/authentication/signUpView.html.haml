@@ -1,0 +1,28 @@
+.row
+  .col-md-4.col-md-offset-4
+    %h2.text-center SignUp
+
+    %form{:name => 'userForm', 'ng-controller' => 'SignUpController as user', 'ng-submit' => 'user.signUp()', :novalidate => '', :role => 'form'}
+      .row{'ng-show' => 'user.error'}
+        .alert.alert-danger {{user.error}}
+
+      .row{'ng-show' => 'user.message'}
+        .alert.alert-info {{user.message}}
+
+      .form-group{'ng-class' => '{ "has-error": userForm.email.$dirty && userForm.email.$error.required }'}
+        %label{:for => 'email'} Email
+        %input#email.form-control{:name => 'email', 'ng-model' => 'user.credentials.email', :required => '', :type => 'text'}/
+        %span.help-block{'ng-show' => 'userForm.email.$dirty && userForm.email.$error.required'} Email is required
+
+      .form-group{'ng-class' => '{ "has-error": userForm.password.$dirty && userForm.password.$error.required }'}
+        %label{:for => 'password'} Password
+        %input#password.form-control{:name => 'password', 'ng-model' => 'user.credentials.password', :required => '', :type => 'password'}/
+        %span.help-block{'ng-show' => 'userForm.password.$dirty && userForm.password.$error.required'} Password is required
+
+      .form-group{'ng-class' => '{ "has-error": userForm.password_confirmation.$dirty && userForm.password_confirmation.$error.required }'}
+        %label{:for => 'password_confirmation'} Password confirmation
+        %input#password.form-control{:name => 'password_confirmation', 'ng-model' => 'user.credentials.password_confirmation', :required => '', :type => 'password'}/
+        %span.help-block{'ng-show' => 'userForm.password_confirmation.$dirty && userForm.password_confirmation.$error.required'} Password confirmation is required
+
+      .form-actions
+        %button.btn.btn-primary{'ng-disabled' => 'userForm.$invalid || user.dataLoading', :type => 'submit'} Sign Up

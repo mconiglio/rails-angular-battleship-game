@@ -1,0 +1,12 @@
+.alert.alert-info{'ng-controller': 'FlashController as flash', 'ng-show': 'flash.get().length > 0'}
+  {{flash.get()}}
+%div{'ng-controller': 'SessionController as session'}
+  %h1 Battleship
+  %div{'ng-show': '!currentUser'}
+    %p.lead Welcome!
+    %p
+      %a.btn.btn-lg.btn-success{href: '#/sign_up', role: 'button'} Sign up
+  %div{'ng-show': 'currentUser'}
+    %p.lead Welcome {{currentUser}}!
+    %p
+      %a.btn.btn-lg.btn-success{href: '#/', role: 'button'} Play now!

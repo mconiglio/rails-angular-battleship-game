@@ -5,7 +5,7 @@ RSpec.describe Users::SessionsController, type: :controller do
   before { request.env['devise.mapping'] = Devise.mappings[:user] }
 
   describe '#create' do
-    subject { post :create, user: user }
+    subject { post :create, { user: user, format: :json } }
     let(:user) { { email: email, password: password } }
 
     context 'without parameters' do
@@ -13,7 +13,7 @@ RSpec.describe Users::SessionsController, type: :controller do
       let(:password) {}
 
       it { should be_unauthorized }
-      it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
+      it { expect(JSON.parse(subject.body)['error']).to eq('You need to sign in or sign up before continuing.') }
     end
 
     context 'with parameters' do
@@ -23,7 +23,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           let(:password) { 'somepassword' }
 
           it { should be_unauthorized }
-          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
+          it { expect(JSON.parse(subject.body)['error']).to eq('You need to sign in or sign up before continuing.') }
         end
 
         context 'without password' do
@@ -31,7 +31,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           let(:password) {}
 
           it { should be_unauthorized }
-          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
+          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid Email or password.') }
         end
 
         context 'with a wrong password' do
@@ -39,7 +39,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           let(:password) { 'wrongpassword' }
 
           it { should be_unauthorized }
-          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
+          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid Email or password.') }
         end
       end
 
@@ -48,7 +48,7 @@ RSpec.describe Users::SessionsController, type: :controller do
         let(:password) { 'somepassword' }
 
         it { should be_success }
-        it { expect(JSON.parse(subject.body)['message']).to eq('Signed in successfully.') }
+        it { expect(JSON.parse(subject.body)['email']).to eq(email) }
       end
     end
   end
@@ -68,7 +68,7 @@ RSpec.describe Users::SessionsController, type: :controller do
     end
 
     context 'when not logged' do
-      it { should redirect_to (root_path) }
+      it { expect(subject.status).to eql(204) }
     end
   end
 end

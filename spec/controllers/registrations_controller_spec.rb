@@ -52,12 +52,11 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         let(:password_confirmation) { 'somepassword' }
 
         it { should be_success }
-        it { expect(JSON.parse(subject.body)['message']).to eq('Welcome! You have signed up successfully.') }
+        it { expect(JSON.parse(subject.body)['email']).to eq('someemail@example.com') }
         it { expect{ subject }.to change{ User.count }.by(1) }
       end
     end
   end
-
 
   describe '#update' do
     before { sign_in(some_user, scope: :user) }
@@ -120,7 +119,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
         describe 'the response' do
           it { should be_success }
-          it { expect(JSON.parse(subject.body)['message']).to eq('Your account has been updated successfully.') }
+          it { expect(JSON.parse(subject.body)['email']).to eq(some_user.email) }
         end
 
         describe 'the user result' do
