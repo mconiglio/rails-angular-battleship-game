@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
   GAME_BOARD_LENGTH = 10
   GAME_SHIPS = ([5] * 2 + [3] * 3 + [1] * 5)
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :positions
   after_create :create_positions
   scope :ended, -> { where('ended_at IS NOT NULL') }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708150404) do
+ActiveRecord::Schema.define(version: 20160725151608) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "points",          limit: 4
@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 20160708150404) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.integer  "games_count",            limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["games_count"], name: "index_games_on_games_count", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "games", "users"
