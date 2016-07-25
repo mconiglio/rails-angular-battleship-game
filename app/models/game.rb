@@ -5,6 +5,8 @@ class Game < ActiveRecord::Base
   belongs_to :user
   has_many :positions
   after_create :create_positions
+  scope :ended, -> { where('ended_at IS NOT NULL') }
+  scope :by_ended_at, -> { order('ended_at DESC') }
 
   # Decrements the remaining shots if it missed the targets.
   #   If the shot produces the game completion it sets the
