@@ -1,33 +1,45 @@
 'use strict';
 
 angular
-  .module('battleshipApp.session', [])
+  .module('battleshipApp.session')
   .controller('SessionController', SessionController);
 
-SessionController.$inject = ['Auth', '$scope', '$location'];
+SessionController.$inject = ['Auth', '$rootScope', 'SessionService', '$location'];
 
-function SessionController(Auth, $scope, $location) {
+function SessionController(Auth, $rootScope, SessionService, $location) {
+  var vm = this;
+
+  vm.currentUser = currentUser;
+  vm.isAuthenticated = isAuthenticated;
+
+  function currentUser() {
+    return SessionService.getUser();
+  }
+
+  function isAuthenticated() {
+    return SessionService.getAuthenticated();
+  }
 
   Auth.currentUser().then(function(user) {
-    $scope.currentUser = user.email;
-    $scope.isAuthenticated = true;
+    SessionService.setUser(user.email);
+    SessionService.setAuthenticated(true);
   });
 
-  $scope.$on('devise:login', function() {
-    $scope.isAuthenticated = true;
+  $rootScope.$on('devise:login', function() {
+    SessionService.setAuthenticated(true);
   });
 
-  $scope.$on('devise:new-session', function() {
-    $scope.isAuthenticated = true;
+  $rootScope.$on('devise:new-session', function() {
+    SessionService.setAuthenticated(true);
   });
 
-  $scope.$on('devise:logout', function() {
-    $scope.isAuthenticated = false;
-    delete $scope.currentUser;
+  $rootScope.$on('devise:logout', function() {
+    SessionService.setAuthenticated(false);
+    SessionService.setUser('');
   });
 
-  $scope.$on('devise:new-registration', function() {
-    $scope.isAuthenticated = true;
+  $rootScope.$on('devise:new-registration', function() {
+    SessionService.setAuthenticated(true);
   });
 
   this.logout = function() {

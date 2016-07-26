@@ -1,12 +1,12 @@
 .alert.alert-info{'ng-controller': 'FlashController as flash', 'ng-show': 'flash.get().length > 0'}
   {{flash.get()}}
-%div{'ng-controller': 'SessionController as session'}
+%div{'ng-controller': 'SessionController as sessionCtrl'}
   %h1 Battleship
-  %div{'ng-show': '!currentUser'}
+  %div{'ng-show': '!sessionCtrl.currentUser()'}
     %p.lead Welcome!
     %p
       %a.btn.btn-lg.btn-success{href: '#/sign_up', role: 'button'} Sign up
-  %div{'ng-show': 'currentUser'}
-    %p.lead Welcome {{currentUser}}!
+  %div{'ng-show': 'sessionCtrl.currentUser()', 'ng-controller': 'HomeController as homeCtrl'}
+    %p.lead Welcome {{sessionCtrl.currentUser()}}!
     %p
-      %a.btn.btn-lg.btn-success{href: '#/', role: 'button'} Play now!
+      %a.btn.btn-lg.btn-success{'ng-click': 'homeCtrl.createGame()', role: 'button'} Play now!

@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('battleshipApp.user', []);
-angular.module('battleshipApp.flash', []);
+angular.module('battleshipApp.session', []);
+angular.module('battleshipApp.core', []);
 
 angular.module('battleshipApp', [
   'ngRoute',
   'Devise',
   'battleshipApp.user',
   'battleshipApp.session',
-  'battleshipApp.flash'
+  'battleshipApp.core',
+  'cfp.hotkeys'
 ]);

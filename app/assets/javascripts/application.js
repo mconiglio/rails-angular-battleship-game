@@ -4,4 +4,6 @@
 //= require angular
 //= require angular-route
 //= require angular-devise
+//= require mousetrap
+//= require angular-hotkeys
 //= require_tree ./app

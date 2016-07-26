@@ -1,2 +1,37 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+.cell-hover tbody tr td {
+  max-width: 29px;
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  i {
+    font-size:20px;
+  }
+  &.selected {
+    box-shadow:inset 0px 0px 0px 3px #d9534f;
+    border-bottom: 0px;
+    border-right: 0px;
+  }
+}
+
+i.fa {
+  &.fa-tint {
+    color: #5bc0de;
+  }
+  &.fa-ship {
+    color: #5cb85c;
+  }
+}
+
+.game-status {
+  p {
+    border-bottom: 1px solid #c5c1c1;
+  }
+}

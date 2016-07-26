@@ -13,6 +13,9 @@ angular.module('battleshipApp')
       .when('/edit_user', {
         templateUrl: '/assets/app/components/authentication/editUserView.html'
       })
+      .when('/game/:id', {
+        templateUrl: '/assets/app/components/game/gameView.html'
+      })
       .when('/', {
         templateUrl: '/assets/app/components/home/homeView.html'
       })

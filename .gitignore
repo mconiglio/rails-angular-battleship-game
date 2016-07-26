@@ -14,7 +14,7 @@
 /.idea
 
 # Ignore all OS files.
-/.DS_Store
+.DS_Store
 
 # Ignore database configuration.
 /config/database.yml

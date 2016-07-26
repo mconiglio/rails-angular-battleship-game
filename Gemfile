@@ -15,6 +15,7 @@ gem 'angular_rails_csrf'
 gem 'rspec-rails'
 gem 'sprockets-rails', '~> 2.0'
 gem 'will_paginate'
+gem 'font-awesome-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular-devise'

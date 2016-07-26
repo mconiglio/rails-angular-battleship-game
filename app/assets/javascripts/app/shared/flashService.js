@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('battleshipApp.flash')
+  .module('battleshipApp.session')
   .service('FlashService', FlashService);
 
 FlashService.$inject = ['$rootScope'];
