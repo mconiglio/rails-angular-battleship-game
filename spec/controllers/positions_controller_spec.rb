@@ -32,7 +32,7 @@ RSpec.describe PositionsController, type: :controller do
       let(:position) { game.positions.offset(rand(game.positions.count)).first }
 
       it { should be_unauthorized }
-      it { expect(JSON.parse(subject.body)['error']).to eq('You have to authenticate to do this.') }
+      it { expect(JSON.parse(subject.body)['error']).to eq("You can't shoot this position.") }
     end
   end
 end

@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       set_flash_message(:notice, :signed_up)
       sign_up(:user, @user)
-      render json: @user, status: 201
+      render json: current_or_guest_user, status: 201
     else
       set_flash_message(:alert, :invalid)
       render json: { 'error': flash[:alert] }, status: 401

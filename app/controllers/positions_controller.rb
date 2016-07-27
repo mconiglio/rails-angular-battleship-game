@@ -7,7 +7,7 @@ class PositionsController < ApiController
   #   or an error message if the position belongs to another user
   #   or game.
   def update
-    @game = current_user.games.find_by(id: params[:game_id])
+    @game = current_or_guest_user.games.find_by(id: params[:game_id])
     @position = @game.positions.find_by(id: params[:id]) if @game
 
     if @position && !@position.shooted? && !@game.finished?

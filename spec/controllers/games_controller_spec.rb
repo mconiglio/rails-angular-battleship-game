@@ -106,8 +106,15 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context 'when not logged' do
-      it { should be_unauthorized }
-      it { expect(JSON.parse(subject.body)['error']).to eq('You have to authenticate to do this.') }
+      it 'creates a new Game' do
+        expect { subject }.to change(Game, :count).by(1)
+      end
+
+      it 'assigns a newly created game as @game' do
+        expect{ subject }.to change{ assigns(:game) }.to be_a(Game)
+      end
+
+      it { should be_created }
     end
   end
 end

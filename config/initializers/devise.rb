@@ -267,4 +267,8 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   config.parent_controller = 'ApiController'
+
+  config.warden do |manager|
+    manager.default_strategies(scope: :user).unshift :guest_user
+  end
 end

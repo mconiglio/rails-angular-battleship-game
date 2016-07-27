@@ -31,7 +31,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           let(:password) {}
 
           it { should be_unauthorized }
-          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid Email or password.') }
+          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
         end
 
         context 'with a wrong password' do
@@ -39,7 +39,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           let(:password) { 'wrongpassword' }
 
           it { should be_unauthorized }
-          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid Email or password.') }
+          it { expect(JSON.parse(subject.body)['error']).to eq('Invalid email or password.') }
         end
       end
 

@@ -1,28 +1,28 @@
-.container{'ng-controller' => 'GameController as gameCtrl'}
+.container{'ng-controller': 'GameController as gameCtrl'}
   .row
     .text-center
-      %h2{'ng-hide' => 'gameCtrl.game.ended_at'} Play!
-      %h2{'ng-show' => 'gameCtrl.game.ended_at'} Good game!
+      %h2{'ng-hide': 'gameCtrl.game.ended_at'} Play!
+      %h2{'ng-show': 'gameCtrl.game.ended_at'} Good game!
     .col-md-5.col-md-offset-2
       %table.table.table-bordered.cell-hover
         %tbody
-          %tr{'ng-repeat' => 'row in gameCtrl.positions'}
-            %td.text-center{'ng-class' => '(!gameCtrl.game.ended_at && position.x == gameCtrl.x_selected && position.y == gameCtrl.y_selected) ? "selected" : ""',
-                            'ng-click' => 'gameCtrl.shootPosition(position)',
-                            'ng-mouseover' => 'gameCtrl.x_selected = position.x; gameCtrl.y_selected = position.y;',
-                            'ng-repeat' => 'position in row'}
-              %a.link-unstyled{:href => ''}
-                %i.fa.fa-question{'ng-hide' => 'position.shooted'}
-              %i.fa.fa-ship{'ng-show' => 'position.shooted && !position.water'}
-              %i.fa.fa-tint{'ng-show' => 'position.shooted && position.water'}
+          %tr{'ng-repeat': 'row in gameCtrl.positions'}
+            %td.text-center{'ng-class': '(!gameCtrl.game.ended_at && position.x == gameCtrl.x_selected && position.y == gameCtrl.y_selected) ? "selected" : ""',
+                            'ng-click': 'gameCtrl.shootPosition(position)',
+                            'ng-mouseover': 'gameCtrl.x_selected = position.x; gameCtrl.y_selected = position.y;',
+                            'ng-repeat': 'position in row'}
+              %a.link-unstyled{href: ''}
+                %i.fa.fa-question{'ng-hide': 'position.shooted'}
+              %i.fa.fa-ship{'ng-show': 'position.shooted && !position.water'}
+              %i.fa.fa-tint{'ng-show': 'position.shooted && position.water'}
     .col-md-2.game-status
       %p Remaining shots: {{gameCtrl.game.remaining_shots}}
       %p Shots on target: {{gameCtrl.game.shots_on_target}}
       %p Shots missed: {{gameCtrl.game.shots_missed}}
-      %p{'ng-show' => 'gameCtrl.game.ended_at'} Time played: {{gameCtrl.game.time_played}}
-      %p{'ng-show' => '!gameCtrl.game.ended_at'} Time played: {{gameCtrl.time_played}}
-      %p{'ng-show' => 'gameCtrl.game.ended_at'} Total points: {{gameCtrl.game.points}}
-  .row.text-center{'ng-show' => 'gameCtrl.game.ended_at'}
+      %p{'ng-show': 'gameCtrl.game.ended_at'} Time played: {{gameCtrl.game.time_played}}
+      %p{'ng-show': '!gameCtrl.game.ended_at'} Time played: {{gameCtrl.time_played}}
+      %p{'ng-show': 'gameCtrl.game.ended_at'} Total points: {{gameCtrl.game.points}}
+  .row.text-center{'ng-show': 'gameCtrl.game.ended_at'}
     %p
-      %a.btn.btn-lg.btn-primary{:href => '#/'} Go to home page!
-      %a.btn.btn-lg.btn-success{:href => '#/leaderboard'} Go to the leaderboard!
+      %a.btn.btn-lg.btn-primary{href: '#/'} Go to home page!
+      %a.btn.btn-lg.btn-success{href: '#/leaderboard'} Go to the leaderboard!

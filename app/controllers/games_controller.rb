@@ -29,7 +29,7 @@ class GamesController < ApiController
   #
   # @return [JSON] the JSON with the attributes of the game.
   def create
-    @game = current_user.games.create
+    @game = current_or_guest_user.games.create
     render json: @game, status: 201
   end
 

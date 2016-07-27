@@ -1,24 +1,24 @@
 .header
   %nav
-    %ul.nav.nav-pills.pull-right{'ng-controller' => 'SessionController as sessionCtrl'}
-      %li{:role => 'presentation'}
-        %a{:href => '#/'} Home
-      %li{'ng-hide' => 'sessionCtrl.isAuthenticated()', :role => 'presentation'}
-        %a{:href => '#/sign_in'} Sign In
-      %li.dropdown{'ng-show' => 'sessionCtrl.isAuthenticated()', :role => 'presentation'}
-        %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => ''}
+    %ul.nav.nav-pills.pull-right{'ng-controller': 'SessionController as sessionCtrl'}
+      %li{role: 'presentation'}
+        %a{href: '#/'} Home
+      %li{'ng-hide': 'sessionCtrl.isAuthenticated()', role: 'presentation'}
+        %a{href: '#/sign_in'} Sign In
+      %li.dropdown{'ng-show': 'sessionCtrl.isAuthenticated()', role: 'presentation'}
+        %a.dropdown-toggle{'data-toggle': 'dropdown', href: ''}
           Account
           %b.caret
         %ul.dropdown-menu
           %li
-            %a{:href => '#/leaderboard'} Leaderboard
+            %a{href: '#/leaderboard'} Leaderboard
           %li
-            %a{:href => '#/edit_user'} Edit Profile
+            %a{href: '#/edit_user'} Edit Profile
           %li.divider
           %li
-            %a{:href => '', 'ng-click' => 'sessionCtrl.logout()'} Logout
+            %a{href: '', 'ng-click': 'sessionCtrl.logout()'} Logout
 
   %h3.text-muted
-    %a{:href => '#/'} Battleship
+    %a{href: '#/'} Battleship
 
-%div{'ng-view' => ''}
+%div{'ng-view': ''}
