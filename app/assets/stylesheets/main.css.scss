@@ -35,3 +35,9 @@ i.fa {
     border-bottom: 1px solid #c5c1c1;
   }
 }
+
+.btn {
+  &:focus {
+    outline: none;
+  }
+}
