@@ -22,7 +22,9 @@
       %p{'ng-show': 'gameCtrl.game.ended_at'} Time played: {{gameCtrl.game.time_played}}
       %p{'ng-show': '!gameCtrl.game.ended_at'} Time played: {{gameCtrl.time_played}}
       %p{'ng-show': 'gameCtrl.game.ended_at'} Total points: {{gameCtrl.game.points}}
-  .row.text-center{'ng-show': 'gameCtrl.game.ended_at'}
-    %p
+  .row.text-center{'ng-controller': 'SessionController as sessionCtrl'}
+    %p{'ng-show': 'gameCtrl.game.ended_at && !sessionCtrl.isGuest()'}
       %a.btn.btn-lg.btn-primary{href: '#/'} Go to home page!
       %a.btn.btn-lg.btn-success{href: '#/leaderboard'} Go to the leaderboard!
+    %p{'ng-show': 'gameCtrl.game.ended_at && sessionCtrl.isGuest()'}
+      %a.btn.btn-lg.btn-primary{href: '#/sign_up'} Sign Up Now!

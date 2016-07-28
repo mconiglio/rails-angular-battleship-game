@@ -3,9 +3,9 @@
     %ul.nav.nav-pills.pull-right{'ng-controller': 'SessionController as sessionCtrl'}
       %li{role: 'presentation'}
         %a{href: '#/'} Home
-      %li{'ng-hide': 'sessionCtrl.isAuthenticated()', role: 'presentation'}
+      %li{'ng-show': 'sessionCtrl.isGuest()', role: 'presentation'}
         %a{href: '#/sign_in'} Sign In
-      %li.dropdown{'ng-show': 'sessionCtrl.isAuthenticated()', role: 'presentation'}
+      %li.dropdown{'ng-hide': 'sessionCtrl.isGuest()', role: 'presentation'}
         %a.dropdown-toggle{'data-toggle': 'dropdown', href: ''}
           Account
           %b.caret

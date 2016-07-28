@@ -5,7 +5,7 @@ angular
   .service('SessionService', SessionService);
 
 function SessionService() {
-  var currentUser = '', isAuthenticated = false;
+  var currentUser = '', isAuthenticated = false, isGuest = true;
 
   return {
     setUser: function(user) {
@@ -19,6 +19,12 @@ function SessionService() {
     },
     getAuthenticated: function() {
       return isAuthenticated;
-    }
+    },
+    setGuest: function(guest) {
+      isGuest = guest;
+    },
+    getGuest: function() {
+      return isGuest;
+    },
   };
 }

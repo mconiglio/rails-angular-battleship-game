@@ -2,11 +2,10 @@
   {{flash.get()}}
 %div{'ng-controller': 'SessionController as sessionCtrl'}
   %h1 Battleship
-  %div{'ng-show': '!sessionCtrl.currentUser()'}
-    %p.lead Welcome!
-    %p
+  %div{'ng-controller': 'HomeController as homeCtrl'}
+    %p.lead Welcome {{sessionCtrl.currentUserName()}}!
+    %p{'ng-show': 'sessionCtrl.isGuest()'}
       %a.btn.btn-lg.btn-success{href: '#/sign_up', role: 'button'} Sign up
-  %div{'ng-show': 'sessionCtrl.currentUser()', 'ng-controller': 'HomeController as homeCtrl'}
-    %p.lead Welcome {{sessionCtrl.currentUser()}}!
-    %p
+      %a{'ng-click': 'homeCtrl.createGame()', role: 'button'} play without logging in
+    %p{'ng-show': '!sessionCtrl.isGuest()'}
       %a.btn.btn-lg.btn-success{'ng-click': 'homeCtrl.createGame()', role: 'button'} Play now!
