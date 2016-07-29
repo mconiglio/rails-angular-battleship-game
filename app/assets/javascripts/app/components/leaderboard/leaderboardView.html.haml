@@ -1,8 +1,9 @@
-.container
-  .row.well.well-leaderboard{'ng-controller': 'LeaderboardController as leaderboardCtrl'}
-    %p.text-center
+.container{'ng-controller': 'LeaderboardController as leaderboardCtrl'}
+  .row
+    %p.text-center.margin-left-20
       %a.btn.btn-lg.btn-success{'ng-click': 'leaderboardCtrl.createGame()', 'role': 'button'} New game
-    .col-md-6
+  .row
+    .col-md-5.col-md-offset-1.well
       %h3.text-center Your last Games
       %table.table.table-striped
         %thead
@@ -18,7 +19,7 @@
           %i.fa.fa-chevron-left.fa-lg
         %button.btn.btn-default{'ng-class': '{"disabled": leaderboardCtrl.lastGamesPage == leaderboardCtrl.lastGamesTotalPages}', ng_click: 'leaderboardCtrl.lastGamesNextPage()'}
           %i.fa.fa-chevron-right.fa-lg
-    .col-md-6
+    .col-md-5.well.margin-left-20
       %h3.text-center Top Players
       %table.table.table-striped
         %thead

@@ -1,10 +1,12 @@
 .container{'ng-controller': 'GameController as gameCtrl'}
   .row
     .text-center
-      %h2{'ng-hide': 'gameCtrl.game.ended_at'} Play!
-      %h2{'ng-show': 'gameCtrl.game.ended_at'} Good game!
-    .col-md-5.col-md-offset-2
-      %table.table.table-bordered.cell-hover
+      %h1.battleship-title.battleship-title-inverse{'ng-hide': 'gameCtrl.game.ended_at'} Play!
+      %h1.battleship-title.battleship-title-inverse{'ng-show': 'gameCtrl.game.ended_at'} Good game!
+
+  .row
+    .col-md-5.col-md-offset-2.well
+      %table.table.table-bordered.cell-hover.no-margin-bottom
         %tbody
           %tr{'ng-repeat': 'row in gameCtrl.positions'}
             %td.text-center{'ng-class': '(!gameCtrl.game.ended_at && position.x == gameCtrl.x_selected && position.y == gameCtrl.y_selected) ? "selected" : ""',
@@ -15,16 +17,20 @@
                 %i.fa.fa-question{'ng-hide': 'position.shooted'}
               %i.fa.fa-ship{'ng-show': 'position.shooted && !position.water'}
               %i.fa.fa-tint{'ng-show': 'position.shooted && position.water'}
-    .col-md-2.game-status
+
+    .col-md-2.game-status.well
       %p Remaining shots: {{gameCtrl.game.remaining_shots}}
       %p Shots on target: {{gameCtrl.game.shots_on_target}}
       %p Shots missed: {{gameCtrl.game.shots_missed}}
       %p{'ng-show': 'gameCtrl.game.ended_at'} Time played: {{gameCtrl.game.time_played}}
       %p{'ng-show': '!gameCtrl.game.ended_at'} Time played: {{gameCtrl.time_played}}
       %p{'ng-show': 'gameCtrl.game.ended_at'} Total points: {{gameCtrl.game.points}}
-  .row.text-center{'ng-controller': 'SessionController as sessionCtrl'}
-    %p{'ng-show': 'gameCtrl.game.ended_at && !sessionCtrl.isGuest()'}
-      %a.btn.btn-lg.btn-primary{href: '#/'} Go to home page!
-      %a.btn.btn-lg.btn-success{href: '#/leaderboard'} Go to the leaderboard!
-    %p{'ng-show': 'gameCtrl.game.ended_at && sessionCtrl.isGuest()'}
-      %a.btn.btn-lg.btn-primary{href: '#/sign_up'} Sign Up Now!
+
+      .text-center{'ng-controller': 'SessionController as sessionCtrl'}
+        %div{'ng-show': 'gameCtrl.game.ended_at && !sessionCtrl.isGuest()'}
+          %p.without-border
+            %a.btn.btn-md.btn-primary{href: '#/'} Go to home page
+          %p.without-border
+            %a.btn.btn-md.btn-success{href: '#/leaderboard'} Go to the leaderboard
+        %p.without-border{'ng-show': 'gameCtrl.game.ended_at && sessionCtrl.isGuest()'}
+          %a.btn.btn-md.btn-primary{href: '#/sign_up'} Sign Up Now!

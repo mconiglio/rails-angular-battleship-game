@@ -1,24 +1,25 @@
-.header
-  %nav
-    %ul.nav.nav-pills.pull-right{'ng-controller': 'SessionController as sessionCtrl'}
-      %li{role: 'presentation'}
-        %a{href: '#/'} Home
-      %li{'ng-show': 'sessionCtrl.isGuest()', role: 'presentation'}
-        %a{href: '#/sign_in'} Sign In
-      %li.dropdown{'ng-hide': 'sessionCtrl.isGuest()', role: 'presentation'}
-        %a.dropdown-toggle{'data-toggle': 'dropdown', href: ''}
-          Account
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{href: '#/leaderboard'} Leaderboard
-          %li
-            %a{href: '#/edit_user'} Edit Profile
-          %li.divider
-          %li
-            %a{href: '', 'ng-click': 'sessionCtrl.logout()'} Logout
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .container
+    .navbar-header
+      %a#logo{href: '#/'} Battleship
 
-  %h3.text-muted
-    %a{href: '#/'} Battleship
+    %nav
+      %ul.nav.navbar-nav.pull-right.collapse.navbar-collapse{'ng-controller': 'SessionController as sessionCtrl'}
+        %li{role: 'presentation'}
+          %a{href: '#/'} Home
+        %li{'ng-show': 'sessionCtrl.isGuest()', role: 'presentation'}
+          %a{href: '#/sign_in'} Sign In
+        %li.dropdown{'ng-hide': 'sessionCtrl.isGuest()', role: 'presentation'}
+          %a.dropdown-toggle{'data-toggle': 'dropdown', href: ''}
+            Account
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{href: '#/leaderboard'} Leaderboard
+            %li
+              %a{href: '#/edit_user'} Edit Profile
+            %li.divider
+            %li
+              %a{href: '', 'ng-click': 'sessionCtrl.logout()'} Logout
 
 %div{'ng-view': ''}

@@ -1,6 +1,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import url(https://fonts.googleapis.com/css?family=Black+Ops+One);
+
+body {
+  margin-top: 80px;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
 
 .cell-hover tbody tr td {
   max-width: 29px;
@@ -31,8 +40,12 @@ i.fa {
 }
 
 .game-status {
+  margin-left: 15px;
   p {
     border-bottom: 1px solid #c5c1c1;
+  }
+  .without-border {
+    border: none;
   }
 }
 
@@ -40,4 +53,30 @@ i.fa {
   &:focus {
     outline: none;
   }
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+.background-ship {
+  background: image-url("background-ship.jpg");
+}
+
+.battleship-title {
+  font-family: Black Ops One;
+  &.battleship-title-inverse {
+    color: #cabcaa;
+  }
+}
+
+.margin-left-20 {
+  margin-left: 20px;
 }
